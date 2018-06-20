@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>web component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="user-poll.js"></script>
+</head>
+<body>
+    <user-poll id-number='1' id="user-poll"></user-poll>
+    <script>
+        let poll = document.getElementById("user-poll");
+        poll.question = "What is your country name ??"
+        poll.answer = [
+            "My Country name is Bangladesh.",
+            "Country name Bangladesh.",
+            "Bangladesh is the name of my country.",
+            "Bangladesh is the name of my country.",
+            "Bangladesh is the name of my country.",
+            "It Is Bangladesh which is my country"
+        ];
+        poll.checkValidation = function(value){
+            let slected = value;
+            let result = null;
+            setTimeout(function(){
+                poll.select = null;
+                result = confirm("Cool Next Question for you.");
+                if(!result){
+                    poll.display = false;
+                    document.body.innerHTML = `<h1>Exam Finish</h1>`;
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

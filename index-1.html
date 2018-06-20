@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Learn web component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        class MyCustomElement extends HTMLElement {
+            constructor(){
+                super();
+                console.log("my custom elements");
+            }
+            connectedCallback(){
+                console.log("My Custom element added to the dom");
+            }
+            static get observedAttributes(){
+                return ["demo"];
+            }
+            attributeChangedCallback(name, oldValue, newValue){
+                console.log(`attribute ${name} change form ${oldValue} to ${newValue}`);
+            }
+            disconnectedCallback(){
+                console.log("Remove from document");
+            }
+        }
+        window.customElements.define('my-custom-element', MyCustomElement);
+
+        class CustomLink extends HTMLAnchorElement{
+            connectedCallback(){
+                this.addEventListener('click', e=>{
+                    e.preventDefault();
+                    const result = confirm("Are you sure?");
+                    if(result){
+                        window.location.href = e.target.href;
+                    }
+                })
+            }
+        }
+        window.customElements.define('custom-link', CustomLink, {extends: 'a'});
+    </script>
+</head>
+<body>
+    <template id="list-item">
+        <li>
+            <h1>A movie title</h1>
+            <p>A Moive plot</p>
+        </li>
+    </template>
+    <h1 id="title">Welcome to web component</h1>
+    <script>
+        let elm = document.createElement('my-custom-element');
+        setTimeout(function(){
+            document.body.appendChild(elm);
+        }, 2000);
+        setTimeout(function(){
+            elm.setAttribute('demo', '123');
+        }, 3000);
+        setTimeout(function(){
+            elm.setAttribute('demo', 'new-123');
+        }, 4000);
+        
+        setTimeout(function(){
+            elm.parentElement.removeChild(elm);
+        }, 5000);
+    </script>
+    <a is='custom-link' href='//google.com'>Google</a>
+</body>
+</html>

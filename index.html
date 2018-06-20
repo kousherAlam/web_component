@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>web component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="star-rating.js"></script>
+    <style>
+        star-rating{
+            --star-width: 20px;
+            --star-height: 20px;
+            --star-color: black;
+            --star-active-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <star-rating rating='2' id="rating-star-1"></star-rating>
+    <script>
+        let star = document.getElementById('rating-star-1');
+        star.addEventListener('change', function(e){
+            console.log(e);
+        });
+    </script>
+</body>
+</html>
