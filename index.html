@@ -5,20 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>web component</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="star-rating.js"></script>
+    <script src="multi-dropdown.js"></script>
     <style>
-        star-rating{
-            --star-width: 20px;
-            --star-height: 20px;
-            --star-color: black;
-            --star-active-color: blue;
-        }
+        
     </style>
 </head>
 <body>
-    <star-rating rating='2' id="rating-star-1"></star-rating>
+    <multi-select id="multi-select"></multi-select>
     <script>
-        let star = document.getElementById('rating-star-1');
+        let star = document.getElementById('multi-select');
         star.addEventListener('change', function(e){
             console.log(e);
         });
